@@ -1,0 +1,10 @@
+Django==3.1.7
+djangorestframework==3.12.4
+django-crispy-forms==1.11.2
+django-inlinecss==0.3.0
+Pillow
+requests==2.25.1
+six==1.15.0
+gunicorn
+django-cors-headers
+django-heroku
