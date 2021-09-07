@@ -6,5 +6,5 @@ from rest_framework.pagination import (
 class PostLimitOffsetPagination(LimitOffsetPagination):
     """pagination concept ..."""
 
-    default_limit = 2
-    max_limit = 2
+    default_limit = 7
+    max_limit = 7
