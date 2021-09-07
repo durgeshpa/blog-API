@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from account.views import Logout
+# from post.views import DetailPostAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
     # browser login
@@ -30,5 +31,5 @@ urlpatterns = [
 
     path('token/', obtain_auth_token, name='api_token_auth'),
     path('logout/', Logout.as_view(), name="logout"),
-
+    # path("", DetailPostAPIView.as_view(), name="post-detail"),
 ]

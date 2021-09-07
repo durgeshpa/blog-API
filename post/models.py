@@ -60,7 +60,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         """Revarse url mapping..."""
         try:
-            return reverse("posts_api:post_detail", kwargs={"slug": self.slug})
+            return reverse("posts_api:post-detail", kwargs={"slug": self.slug})
         except:
             None
 

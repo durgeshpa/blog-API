@@ -8,14 +8,12 @@ from .views import (
     DetailCommentAPIView,
 )
 
-
-
-app_name = "posts"
+app_name = "posts_api"
 
 urlpatterns = [
     path("", ListPostAPIView.as_view(), name="list_post"),
     path("create/", CreatePostAPIView.as_view(), name="create_post"),
-    path("<str:slug>/", DetailPostAPIView.as_view(), name="post_detail"),
+    path("<str:slug>/", DetailPostAPIView.as_view(), name="post-detail"),
     path("<str:slug>/comment/", ListCommentAPIView.as_view(), name="list_comment"),
     path(
         "<str:slug>/comment/create/",

@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import (Post, Comment)
 
 User = get_user_model()
+base_url = "https://blog-1-api-test.herokuapp.com"
 
 
 class PostCreateOrUpdate(serializers.ModelSerializer):
@@ -49,7 +50,7 @@ class PostListSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         """Return absalute url ..."""
-        return obj.get_absolute_url()
+        return base_url + obj.get_absolute_url()
 
 
 class PostDetailSerializer(serializers.ModelSerializer):

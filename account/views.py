@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
+# from django.shortcuts import render
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
@@ -17,8 +17,12 @@ from rest_framework.generics import (
 )
 from post.permissions import IsOwnerOrReadOnly, IsOwner
 from .serializers import UserSerializer
+import json
 
 # Create your views here.
+# from rest_framework import status
+# from rest_framework.response import Response
+
 
 User = get_user_model()
 
@@ -70,13 +74,12 @@ class UserDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
 
 
-
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
 class Logout(APIView):
+    """Log out view ..."""
+
     def get(self, request, format=None):
-        # simply delete the token to force a login
+        """Simply delete the token to force a login ..."""
         request.user.auth_token.delete()
-        return Response(status=status.HTTP_200_OK)
+        data = {"detail": "you are sucessfully Logout"}
+        data = json.dumps(data)
+        return Response(data=data, status=HTTP_200_OK)

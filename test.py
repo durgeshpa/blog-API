@@ -3,31 +3,32 @@ import json
 
 #loginurl = "https://my-blog-tests.herokuapp.com/users/"
 #url2 = "https://my-blog-tests.herokuapp.com/posts/"
-# url = "http://localhost:8000/token/"
+base_url = "https://blog-1-api-test.herokuapp.com"
+url = "https://blog-1-api-test.herokuapp.com/token/"
 #http post http://127.0.0.1:8000/token-auth/ username=simon password=1234
 #http post http://127.0.0.1:8000/token-auth/ username=simon password=1234
 # 842a77990cdca6efd3c24d66f4d56e0ccd040f03
 
 
 
-# data1 = {"username":"amit@123","password":"123"}
+data1 = {"username":"amit@123","password":"123"}
 
 
-# data = requests.post(url=url, data=data1)
-# print(data.json())
+data = requests.post(url=url, data=data1)
+print(data.json())
 
 
-# url = "http://localhost:8000/posts/create/"
-# data = {"title":"second fsc s ww","body":"qriorrrrrrrrrrrrrrrrrrrrrrrrrrrr","status": "published",}
+url = "https://blog-1-api-test.herokuapp.com/posts/create/"
+data = {"title" : "second fsc s rrreddd www","body":"qriorrrrrrrrrrrrrrrrrrrrrrrrrrrr","status": "published",}
 headers = {
 "Content-Type": "application/json; charset=UTF-8",
-'Authorization': 'Token 4d4ffe5a9459cd57cbe5dcee12b9efd9ade7df44',
+'Authorization': 'Token ac8fb64d2571355082d5b587ad46a03652e0ce4c',
 
 }
 
-# data = json.dumps(data)
-# data = requests.post(url=url,headers=headers,data=data)
-# print(data.json())
+data = json.dumps(data)
+data = requests.post(url=url , headers=headers,data=data)
+print(data.json())
 # data = requests.delete(url="http://localhost:8000/posts/new-post/",headers=headers)
 # print(data.json())
 # # print(data.json())
@@ -36,7 +37,40 @@ headers = {
 # #    -X POST http://localhost:8000/token/  \
 # #    --data '{"username":"amit@123","password":"123"}'
 
-url =  "http://localhost:8000/logout"
+headers = {
+'Authorization':'Token ce405b864949acf415be52ab54d8a5d0fef0ad95',
+}
 
-data = requests.get(url=url,headers=headers)
+url = base_url + "/logout/"
+
+data = requests.get(url=url, headers=headers)
 print(data)
+
+
+
+
+
+
+
+# #For example, In following series
+# #1       5      2     8   9     3    7    9     15    20     20     7    7    1
+
+
+# x = [1,5,2,8,9,3,7,9,15,20,20,7,7,1,100,200,300,400,500,6000]
+# max_lenth =1
+
+# for i in range(len(x)):
+# 	mx=1
+# 	count =i + 1
+# 	temp = x[i]
+
+# 	while count<len(x) and temp< x[count]:
+# 		mx=mx+1
+# 		temp= x[count]
+
+# 		count +=1
+# 	if mx>max_lenth:
+# 		max_lenth=mx
+# print(max_lenth)
+
+
