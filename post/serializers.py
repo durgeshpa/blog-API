@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import (Post, Comment)
 
 User = get_user_model()
-base_url = "https://blog-1-api-test.herokuapp.com"
+base_url = "http://localhost:8000"
 
 
 class PostCreateOrUpdate(serializers.ModelSerializer):
@@ -56,7 +56,7 @@ class PostListSerializer(serializers.ModelSerializer):
 class PostDetailSerializer(serializers.ModelSerializer):
     """post details serilizers..."""
 
-    slug = serializers.SerializerMethodField(read_only=True)
+    id = serializers.SerializerMethodField(read_only=True)
     author = serializers.PrimaryKeyRelatedField(read_only=True)
     comments = serializers.SerializerMethodField(read_only=True)
 
@@ -66,7 +66,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             "id",
-            "slug",
+            # "slug",
             "title",
             "body",
             "author",
@@ -75,9 +75,8 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "comments",
         ]
 
-    def get_slug(self, obj):
-        return obj.slug
-
+    def get_id(self, obj):
+        return obj.id
     def get_comments(self, obj):
         qs = Comment.objects.filter(parent=obj)
         try:

@@ -81,17 +81,17 @@ class DetailPostAPIView(RetrieveUpdateDestroyAPIView):
     """
     get:..
 
-        Returns the details of a post instance. Searches post using slug field.
+        Returns the details of a post instance. Searches post using slug id.
     put:
         Updates an existing post. Returns updated post data
-        parameters: [slug, title, body, description, image]
+        parameters: [slug, title, body,]
     delete:
         Delete an existing post
-        parameters = [slug]..
+        parameters = [id]..
     """
 
     queryset = Post.objects.all()
-    lookup_field = "slug"
+    lookup_field = "id"
     serializer_class = PostDetailSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
@@ -107,9 +107,9 @@ class CreateCommentAPIView(APIView):
     serializer_class = CommentCreateUpdateSerializer
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, slug, *args, **kwargs):
+    def post(self, request, id, *args, **kwargs):
         """Create comment on sluge field..."""
-        post = get_object_or_404(Post, slug=slug)
+        post = get_object_or_404(Post, id=id)
         print(post)
         serializer = CommentCreateUpdateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -128,9 +128,9 @@ class ListCommentAPIView(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
 
-    def get(self, request, slug):
+    def get(self, request, id):
         """List cooment ..."""
-        post = Post.objects.get(slug=slug)
+        post = Post.objects.get(id=id)
         comments = Comment.objects.filter(parent=post)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=200)
