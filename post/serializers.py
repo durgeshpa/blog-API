@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import (Post, Comment)
 
 User = get_user_model()
-base_url = "http://localhost:8000"
+base_url = "https://blog-1-api-test.herokuapp.com"
 
 
 class PostCreateOrUpdate(serializers.ModelSerializer):
