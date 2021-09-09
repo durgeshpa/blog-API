@@ -18,11 +18,11 @@ data = requests.post(url=url, data=data1)
 print(data.json())
 
 
-url = "https://blog-1-api-test.herokuapp.com/posts/create/"
-data = {"title" : "second fsc s rrreddd www","body":"qriorrrrrrrrrrrrrrrrrrrrrrrrrrrr","status": "published",}
+url = "https://blog-1-api-test.herokuapp.com/posts/8/comment/create/"
+data = {"body":"good boy"}
 headers = {
 "Content-Type": "application/json; charset=UTF-8",
-'Authorization': 'Token ac8fb64d2571355082d5b587ad46a03652e0ce4c',
+'Authorization': 'Token fa93180e4be31710e0fa8d1629b3c285b0d16f4c',
 
 }
 
@@ -37,14 +37,14 @@ print(data.json())
 # #    -X POST http://localhost:8000/token/  \
 # #    --data '{"username":"amit@123","password":"123"}'
 
-headers = {
-'Authorization':'Token ce405b864949acf415be52ab54d8a5d0fef0ad95',
-}
+# headers = {
+# 'Authorization':'Token ce405b864949acf415be52ab54d8a5d0fef0ad95',
+# }
 
-url = base_url + "/logout/"
+# url = base_url + "/logout/"
 
-data = requests.get(url=url, headers=headers)
-print(data)
+# data = requests.get(url=url, headers=headers)
+# print(data)
 
 
 

@@ -105,18 +105,25 @@ class PostDetailSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     """comment serializer.."""
 
+    author = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         """Meta classs .."""
 
         model = Comment
         fields = [
             "id",
-            "parent",
+            # "parent",
             "author",
             "body",
             "created_at",
             "updated_at",
         ]
+
+    def get_author(self, obj):
+        """Comment author ..."""
+        # print(obj.author.username)
+        return obj.author.username
 
 
 class CommentCreateUpdateSerializer(serializers.ModelSerializer):
