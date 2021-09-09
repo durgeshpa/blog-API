@@ -18,7 +18,7 @@ data = requests.post(url=url, data=data1)
 print(data.json())
 
 
-url = "https://blog-1-api-test.herokuapp.com/posts/8/comment/create/"
+No such remote 'origin'url = "https://blog-1-api-test.herokuapp.com/posts/8/comment/create/"
 data = {"body":"good boy"}
 headers = {
 "Content-Type": "application/json; charset=UTF-8",
@@ -72,5 +72,4 @@ print(data.json())
 # 	if mx>max_lenth:
 # 		max_lenth=mx
 # print(max_lenth)
-
-
+# token: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
