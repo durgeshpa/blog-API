@@ -8,3 +8,4 @@ six==1.15.0
 gunicorn
 django-cors-headers
 django-heroku
+django-rest-passwordreset
