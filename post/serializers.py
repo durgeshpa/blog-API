@@ -5,9 +5,8 @@ from .models import (Post, Comment)
 user = get_user_model()
 
 
-# base_url = "http://localhost:8000"
-base_url = "https://blog-1-api-test.herokuapp.com"
-
+base_url = "http://localhost:8000"
+# base_url = "https://blog-1-api-test.herokuapp.com"
 
 class PostCreateOrUpdate(serializers.ModelSerializer):
     """update or create serializer..."""
