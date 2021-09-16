@@ -6,6 +6,7 @@ from .views import (
     CreateCommentAPIView,
     ListCommentAPIView,
     DetailCommentAPIView,
+    Replay,
 )
 
 app_name = "posts_api"
@@ -26,4 +27,5 @@ urlpatterns = [
         name="comment_detail",
     ),
 
+    path("<int:id>/comment/create/<int:c_id>", Replay.as_view(), name="cooment_reply"),
 ]

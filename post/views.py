@@ -34,6 +34,7 @@ from .serializers import (
     PostDetailSerializer,
     CommentSerializer,
     CommentCreateUpdateSerializer,
+    CommentReplySerializer,
 )
 
 # Create your views here..
@@ -154,3 +155,27 @@ class DetailCommentAPIView(MultipleFieldLookupMixin, RetrieveUpdateDestroyAPIVie
     queryset = Comment.objects.all()
     lookup_fields = ["parent", "id"]
     serializer_class = CommentCreateUpdateSerializer
+
+
+class Replay(APIView):
+    """
+    post:..
+
+        Create a comment instnace. Returns created comment data
+        parameters: [post id, body,comment id]
+    """
+
+    serializer_class = CommentReplySerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, id, c_id, *args, **kwargs):
+        """Create comment on sluge field..."""
+        post = get_object_or_404(Post, id=id)
+        comment_replay = get_object_or_404(Comment, id=c_id)
+        serializer = CommentReplySerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(author=request.user, parent=post, replay=comment_replay)
+            return Response(serializer.data, status=200)
+        else:
+            return Response({"errors": serializer.errors}, status=400)
+
