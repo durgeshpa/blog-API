@@ -7,6 +7,7 @@ from .views import (
     ListCommentAPIView,
     DetailCommentAPIView,
     Replay,
+    PostListDetailfilter,
 )
 
 app_name = "posts_api"
@@ -28,4 +29,6 @@ urlpatterns = [
     ),
 
     path("<int:id>/comment/create/<int:c_id>", Replay.as_view(), name="cooment_reply"),
+
+    path('search/', PostListDetailfilter.as_view(), name='postsearch'),
 ]

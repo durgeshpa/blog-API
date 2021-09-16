@@ -18,16 +18,17 @@ import json
 # print(data.json())
 
 
-url = "https://blog-1-api-test.herokuapp.com/logout/"
+# url = "https://blog-1-api-test.herokuapp.com/logout/"
+url = "http://localhost:8000/posts/search/?search=fir"
 # data = {"body":"good jsahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh sa sahjkas sksahkjas boy"}
-headers = {
-"Content-Type": "application/json; charset=UTF-8",
-'Authorization': 'Token fa93180e4be31710e0fa8d1629b3c285b0d16f4c',
+# headers = {
+# "Content-Type": "application/json; charset=UTF-8",
+# 'Authorization': 'Token fa93180e4be31710e0fa8d1629b3c285b0d16f4c',
 
-}
+# }
 
 # data = json.dumps(data)
-data = requests.get(url=url , headers=headers)
+data = requests.get(url=url)
 print(data.json())
 # data = requests.delete(url="http://localhost:8000/posts/new-post/",headers=headers)
 # print(data.json())
@@ -76,3 +77,6 @@ print(data.json())
 
 
 # bdcwiwmmcervyxyu
+
+
+

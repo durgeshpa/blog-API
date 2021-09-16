@@ -1,12 +1,14 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import (Post, Comment)
+# from django_filters import rest_framework as filters
 
 user = get_user_model()
 
 
 # base_url = "http://localhost:8000"
 base_url = "https://blog-1-api-test.herokuapp.com"
+
 
 class PostCreateOrUpdate(serializers.ModelSerializer):
     """update or create serializer..."""
@@ -110,7 +112,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     # comments = CommentSerializer(many=True)# serializers.SerializerMethodField(read_only=True)
 
     comments = serializers.SerializerMethodField(read_only=True)
-    
+
     class Meta:
         """meta class.."""
 
@@ -200,6 +202,38 @@ class CommentReplySerializer(serializers.ModelSerializer):
         """meta class.."""
 
         model = Comment
-        fields = [
-                  "body",
+        fields = ["body",
                   ]
+
+
+# class PostFilter(filters.FilterSet):
+#     """fileter .."""
+
+#     url = serializers.SerializerMethodField()
+#     comments = serializers.SerializerMethodField(read_only=True)
+#     author = serializers.SerializerMethodField(read_only=True)
+
+#     class Meta:
+#         """Meta class.."""
+
+#         model = Post
+#         fields = [
+#             "id",
+#             "url",
+#             "title",
+#             "author",
+#             "comments",
+#         ]
+
+#     def get_comments(self, obj):
+#         """Return comment count..."""
+#         qs = Comment.objects.filter(parent=obj).count()
+#         return qs
+
+#     def get_author(self, obj):
+#         """Return author name ..."""
+#         return obj.author.username
+
+#     def get_url(self, obj):
+#         """Return absalute url ..."""
+#         return base_url + obj.get_absolute_url()

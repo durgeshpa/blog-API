@@ -18,6 +18,8 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 
+from rest_framework import filters
+
 # from .paggination import PostLimitOffsetPagination
 
 from .models import Post, Comment
@@ -178,4 +180,18 @@ class Replay(APIView):
             return Response(serializer.data, status=200)
         else:
             return Response({"errors": serializer.errors}, status=400)
+
+
+class PostListDetailfilter(ListAPIView):
+
+    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = PostListSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^slug']
+
+    # '^' Starts-with search.
+    # '=' Exact matches.
+    # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
+    # '$' Regex search.
 
