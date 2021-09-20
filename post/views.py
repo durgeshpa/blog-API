@@ -1,12 +1,14 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 
 from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly,
-                                        AllowAny,)
+                                        )
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
+
+from rest_framework import status
 
 from rest_framework.generics import (
     CreateAPIView,
@@ -64,7 +66,7 @@ class CreatePostAPIView(APIView):
             serializer.save(author=request.user)
             return Response(serializer.data, status=200)
         else:
-            return Response({"errors": serializer.errors}, status=400)
+            return Response({"errors": serializer.errors}, status=status.HTTP_409_CONFLICT)
 
 
 class ListPostAPIView(ListAPIView):
@@ -183,6 +185,7 @@ class Replay(APIView):
 
 
 class PostListDetailfilter(ListAPIView):
+    """filter the details of post ..."""
 
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -194,4 +197,3 @@ class PostListDetailfilter(ListAPIView):
     # '=' Exact matches.
     # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
     # '$' Regex search.
-

@@ -24,8 +24,11 @@ class PostCreateOrUpdate(serializers.ModelSerializer):
 
     def validate_title(self, value):
         """Validate title..."""
-        if len(value) > 100:
-            return serializers.ValidationError("Max title length is 100 characters")
+        if Post.objects.filter(title=value).exists():
+            raise serializers.ValidationError({
+                'title': 'title all ready exists.'
+            })
+
         return value
 
 
@@ -60,7 +63,6 @@ class PostListSerializer(serializers.ModelSerializer):
     def get_url(self, obj):
         """Return absalute url ..."""
         return base_url + obj.get_absolute_url()
-
 
 
 class RecursiveSerializer(serializers.Serializer):
@@ -100,7 +102,6 @@ class CommentSerializer(serializers.ModelSerializer):
         """Comment author ..."""
         # print(obj.author.username)
         return obj.author.username
-
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
