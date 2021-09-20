@@ -3,31 +3,32 @@ import json
 
 #loginurl = "https://my-blog-tests.herokuapp.com/users/"
 #url2 = "https://my-blog-tests.herokuapp.com/posts/"
-base_url = "https://blog-1-api-test.herokuapp.com"
-url = "https://blog-1-api-test.herokuapp.com/token/"
+# base_url = "https://blog-1-api-test.herokuapp.com"
+# url = "https://blog-1-api-test.herokuapp.com/token/"
 #http post http://127.0.0.1:8000/token-auth/ username=simon password=1234
 #http post http://127.0.0.1:8000/token-auth/ username=simon password=1234
 # 842a77990cdca6efd3c24d66f4d56e0ccd040f03
 
 
 
-data1 = {"username":"amit@123","password":"123"}
+# data1 = {"username":"amit@123","password":"123"}
 
 
-data = requests.post(url=url, data=data1)
-print(data.json())
+# data = requests.post(url=url, data=data1)
+# print(data.json())
 
 
-url = "https://blog-1-api-test.herokuapp.com/posts/8/comment/create/"
-data = {"body":"good boy"}
-headers = {
-"Content-Type": "application/json; charset=UTF-8",
-'Authorization': 'Token fa93180e4be31710e0fa8d1629b3c285b0d16f4c',
+# url = "https://blog-1-api-test.herokuapp.com/logout/"
+url = "http://localhost:8000/posts/search/?search=fir"
+# data = {"body":"good jsahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh sa sahjkas sksahkjas boy"}
+# headers = {
+# "Content-Type": "application/json; charset=UTF-8",
+# 'Authorization': 'Token fa93180e4be31710e0fa8d1629b3c285b0d16f4c',
 
-}
+# }
 
-data = json.dumps(data)
-data = requests.post(url=url , headers=headers,data=data)
+# data = json.dumps(data)
+data = requests.get(url=url)
 print(data.json())
 # data = requests.delete(url="http://localhost:8000/posts/new-post/",headers=headers)
 # print(data.json())
@@ -72,5 +73,10 @@ print(data.json())
 # 	if mx>max_lenth:
 # 		max_lenth=mx
 # print(max_lenth)
+# token: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
+
+
+# bdcwiwmmcervyxyu
+
 
 

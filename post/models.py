@@ -17,8 +17,7 @@ class PublishedManager(models.Manager):
     def get_queryset(self):
         """Query set filter according to publish..."""
         return super(PublishedManager,
-                     self).get_queryset()\
-                     .filter(status='published')
+                     self).get_queryset().filter(status='published')
 
 
 class Post(models.Model):
@@ -64,12 +63,16 @@ class Post(models.Model):
         except:
             None
 
+    # @property
+    # def comments(self):
+    #     """Resturn queryset of comment..."""
+    #     instance = self
+    #     qs = Comment.objects.filter(post=instance)
+    #     return qs
+
     @property
-    def comments(self):
-        """Resturn queryset of comment..."""
-        instance = self
-        qs = Comment.objects.filter(post=instance)
-        return qs
+    def comments_list(self):
+        return self.comments.filter()
 
 
 def create_sluge_default(instance, new_sluge=None):
@@ -97,14 +100,29 @@ pre_save.connect(pre_save_post_receiver, sender=Post)  # save and call the pre_s
 
 class Comment(models.Model):
     """comment database ..."""
-
-    parent = models.ForeignKey(Post, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Post, on_delete=models.CASCADE,blank=True,related_name='comments', related_query_name='comment')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
+    replay = models.ForeignKey('self', on_delete=models.PROTECT, null=True, blank=True, related_name='replies',)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         """Meta class..."""
 
-        ordering = ["-created_at", "-updated_at"]
+        ordering = ["created_at", "updated_at"]
+
+    def __str__(self):
+        """Retuurn comment user name..."""
+        return self.author.username
+
+    # def children(self):
+    #     """Return replay ..."""
+    #     return Comment.objects.filter(replay=self)
+
+    # @property
+    # def is_replay(self):
+    #     """Return ..."""
+    #     if self.replay is not None:
+    #         return False
+    #     return True
