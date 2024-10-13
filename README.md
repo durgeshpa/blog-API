@@ -137,3 +137,4 @@
 - Ensure that all services are restarted, and configurations are correctly applied.
 - Verify that new sites appear in the SCADA, NWP, intraday forecasts, and GUI.
 - Re-run test imports and forecasts for validation before marking the update as complete.
+- Re-run test imports and forecasts for validation before marking the update as complete.
